@@ -29,13 +29,20 @@ module.exports = class extends Generator {
 
 	createProjectFileSystem() {
 		const destRoot = this.destinationRoot();
+		const sourceRoot = this.sourceRoot();
 		const appDir = path.join(destRoot, 'app');
 
 		mkdirp(path.join(appDir, 'scripts'));
 		mkdirp(path.join(appDir, 'img'));
+
+		this.fs.copy(path.join(sourceRoot, '.bowerrc'), path.join(destRoot, '.bowerrc'));
+		this.fs.copy(path.join(sourceRoot, 'bower.json'), path.join(destRoot, 'bower.json'));
+		this.fs.copy(path.join(sourceRoot, 'package.json'), path.join(destRoot, 'package.json'));
 	}
 
-	method2() {
+	installDependencies() {
+		this.bowerInstall();
+		this.npmInstall();
 		this.log('method 2 just ran');
 	}
 };
