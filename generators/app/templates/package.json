@@ -1,7 +1,7 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
+  "name": "<%= appname %>",
+  "version": "<%= appversion %>",
+  "description": "<%= appdescription %>",
   "main": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -12,8 +12,8 @@
   "keywords": [
     ""
   ],
-  "author": "",
-  "license": "",
+  "author": "<%= appname %>",
+  "license": "<%= applicense %>",
   "devDependencies": {
     "grunt-contrib-clean": "~0.6.0",
     "grunt-contrib-jshint": "~0.11.1",

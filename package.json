@@ -12,8 +12,8 @@
   "keywords": [
     "yeoman-generator"
   ],
-  "author": "Hassan Ali",
-  "license": "ISC",
+  "author": "<%= appname %>",
+  "license": "<%= applicense %>",
   "dependencies": {
     "chalk": "^1.1.3",
     "mkdirp": "^0.5.1",

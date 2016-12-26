@@ -13,19 +13,42 @@ module.exports = class extends Generator {
 		this.option('babel');
 	}
 
-	_prompting() {
+	prompting() {
+		const done = this.async();
+
 		return this.prompt([{
 			type    : 'input',
 			name    : 'name',
 			message : 'Your project name',
 			default : this.appname // Default to current folder name
 		}, {
-			type    : 'confirm',
-			name    : 'cool',
-			message : 'Would you like to enable the Cool feature?'
+			type    : 'input',
+			name    : 'version',
+			message : 'What is the version of your project?',
+			default : '0.0.0'
+		}, {
+			type    : 'input',
+			name    : 'version',
+			message : 'Author?',
+			default : this.appname
+		}, {
+			type    : 'input',
+			name    : 'description',
+			message : 'What is a description of your project?',
+			default : 'generator-h is awesome'
+		}, {
+			type    : 'input',
+			name    : 'license',
+			message : 'How is your project licensed?',
+			default : 'MIT'
 		}]).then((answers) => {
+			this.appname = answers.name;
+			this.appversion = answers.version;
+			this.appdescription = answers.description;
+			this.applicense = answers.license;
 			this.log('app name', answers.name);
 			this.log('cool feature', answers.cool);
+			done();
 		});
 	}
 
@@ -33,13 +56,22 @@ module.exports = class extends Generator {
 		const destRoot = this.destinationRoot();
 		const sourceRoot = this.sourceRoot();
 		const appDir = path.join(destRoot, 'app');
+		const templateContext = {
+			appname: this.appname,
+			appdescription: this.appdescription,
+			appversion: this.appversion,
+			applicense: this.applicense,
+			appauthor: this.appauthor,
+			appmail: this.appmail
+		};
 
 		mkdirp(path.join(appDir, 'scripts'));
 		mkdirp(path.join(appDir, 'img'));
 
 		this.fs.copy(path.join(sourceRoot, '.bowerrc'), path.join(destRoot, '.bowerrc'));
-		this.fs.copy(path.join(sourceRoot, 'bower.json'), path.join(destRoot, 'bower.json'));
-		this.fs.copy(path.join(sourceRoot, 'package.json'), path.join(destRoot, 'package.json'));
+		this.fs.copyTpl(path.join(sourceRoot, 'bower.json'), path.join(destRoot, 'bower.json'), templateContext);
+		this.fs.copyTpl(path.join(sourceRoot, 'package.json'), path.join(destRoot, 'package.json'), templateContext);
+		this.fs.copyTpl(path.join(sourceRoot, 'README.md'), path.join(destRoot, 'README.md'), templateContext);
 	}
 
 

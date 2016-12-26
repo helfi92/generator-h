@@ -1,7 +1,7 @@
 {
-  "name": "templates",
+  "name": "<%= appname %>",
   "authors": [
-    "helfi92 <helfi92@gmail.com>"
+    "<%= appauthor %>"
   ],
   "description": "",
   "main": "",
