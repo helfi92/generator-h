@@ -6,15 +6,17 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-	"files": [
-		"generators"
-	],
+  "files": [
+    "generators"
+  ],
   "keywords": [
     "yeoman-generator"
   ],
   "author": "Hassan Ali",
   "license": "ISC",
   "dependencies": {
+    "mkdirp": "^0.5.1",
+    "path": "^0.12.7",
     "yeoman-generator": "^1.0.1"
   }
 }

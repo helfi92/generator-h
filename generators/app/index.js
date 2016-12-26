@@ -1,4 +1,8 @@
+'use strict';
+
 var Generator = require('yeoman-generator');
+var mkdirp = require('mkdirp');
+var path = require('path');
 
 module.exports = class extends Generator {
 	constructor(args, opts) {
@@ -23,11 +27,15 @@ module.exports = class extends Generator {
 		});
 	}
 
-	method1() {
-		console.log('method 1 just ran, wohoo');
+	createProjectFileSystem() {
+		const destRoot = this.destinationRoot();
+		const appDir = path.join(destRoot, 'app');
+
+		mkdirp(path.join(appDir, 'scripts'));
+		mkdirp(path.join(appDir, 'img'));
 	}
 
 	method2() {
-		console.log('method 2 just ran');
+		this.log('method 2 just ran');
 	}
 };
