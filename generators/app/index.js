@@ -3,6 +3,8 @@
 var Generator = require('yeoman-generator');
 var mkdirp = require('mkdirp');
 var path = require('path');
+var yosay = require('yosay');
+var chalk = require('chalk');
 
 module.exports = class extends Generator {
 	constructor(args, opts) {
@@ -11,7 +13,7 @@ module.exports = class extends Generator {
 		this.option('babel');
 	}
 
-	prompting() {
+	_prompting() {
 		return this.prompt([{
 			type    : 'input',
 			name    : 'name',
@@ -27,7 +29,7 @@ module.exports = class extends Generator {
 		});
 	}
 
-	createProjectFileSystem() {
+	_createProjectFileSystem() {
 		const destRoot = this.destinationRoot();
 		const sourceRoot = this.sourceRoot();
 		const appDir = path.join(destRoot, 'app');
@@ -40,9 +42,25 @@ module.exports = class extends Generator {
 		this.fs.copy(path.join(sourceRoot, 'package.json'), path.join(destRoot, 'package.json'));
 	}
 
-	installDependencies() {
+
+	initializing() {
+		const message = chalk.yellow.bold('Welcome to generator-h \n') + chalk.yellow('A solid JS stack to develop with');
+		this.log(yosay(message, { maxLength: 17 }));
+	}
+
+	configuring() {
+		this.log('configuring');
+		this.config.save();
+	}
+
+	writing() {
+		this.log('writing');
+		this._createProjectFileSystem();
+	}
+
+	install() {
+		this.log('install');
 		this.bowerInstall();
 		this.npmInstall();
-		this.log('method 2 just ran');
 	}
 };
