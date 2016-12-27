@@ -9,7 +9,7 @@ var chalk = require('chalk');
 module.exports = class extends Generator {
 	constructor(args, opts) {
 		super(args, opts);
-
+		this.option('sass', { desc: 'Use classic SASS syntax instead of SCSS' });
 		this.option('babel');
 	}
 
@@ -20,17 +20,19 @@ module.exports = class extends Generator {
 			type    : 'input',
 			name    : 'name',
 			message : 'Your project name',
-			default : this.appname // Default to current folder name
+			default : this.appname, // Default to current folder name
+			store   : true
 		}, {
 			type    : 'input',
 			name    : 'version',
 			message : 'What is the version of your project?',
-			default : '0.0.0'
+			default : '0.0.0',
 		}, {
 			type    : 'input',
 			name    : 'version',
 			message : 'Author?',
-			default : this.appname
+			default : this.appname,
+			store   : true
 		}, {
 			type    : 'input',
 			name    : 'description',
@@ -40,7 +42,8 @@ module.exports = class extends Generator {
 			type    : 'input',
 			name    : 'license',
 			message : 'How is your project licensed?',
-			default : 'MIT'
+			default : 'MIT',
+			store   : true
 		}]).then((answers) => {
 			this.appname = answers.name;
 			this.appversion = answers.version;
@@ -56,6 +59,7 @@ module.exports = class extends Generator {
 		const destRoot = this.destinationRoot();
 		const sourceRoot = this.sourceRoot();
 		const appDir = path.join(destRoot, 'app');
+		const sassFileExtension = this.options.sass ? '.sass' : '.scss';
 		const templateContext = {
 			appname: this.appname,
 			appdescription: this.appdescription,
@@ -67,11 +71,17 @@ module.exports = class extends Generator {
 
 		mkdirp(path.join(appDir, 'scripts'));
 		mkdirp(path.join(appDir, 'img'));
+		mkdirp(path.join(appDir, 'sass'));
 
 		this.fs.copy(path.join(sourceRoot, '.bowerrc'), path.join(destRoot, '.bowerrc'));
 		this.fs.copyTpl(path.join(sourceRoot, 'bower.json'), path.join(destRoot, 'bower.json'), templateContext);
 		this.fs.copyTpl(path.join(sourceRoot, 'package.json'), path.join(destRoot, 'package.json'), templateContext);
 		this.fs.copyTpl(path.join(sourceRoot, 'README.md'), path.join(destRoot, 'README.md'), templateContext);
+
+		// SASS
+		this.fs.copyTpl(path.join(sourceRoot, 'sass','_vars' + sassFileExtension), path.join(destRoot, 'sass', '_vars' + sassFileExtension), templateContext);
+		this.fs.copy(path.join(sourceRoot, 'sass', '_name-space' + sassFileExtension), path.join(destRoot, 'sass', '_name-space' + sassFileExtension));
+		this.fs.copy(path.join(sourceRoot, 'sass', 'host' + sassFileExtension), path.join(destRoot, 'sass', 'host' + sassFileExtension));
 	}
 
 
