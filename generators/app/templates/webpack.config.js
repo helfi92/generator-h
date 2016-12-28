@@ -10,6 +10,7 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.[hash].js'
   },
+  target: 'node',
   module: {
     rules: [
       { test: /\.(js|jsx)$/, use: 'babel-loader' }

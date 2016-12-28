@@ -78,6 +78,7 @@ module.exports = class extends Generator {
 		this.fs.copyTpl(path.join(sourceRoot, 'package.json'), path.join(destRoot, 'package.json'), templateContext);
 		this.fs.copyTpl(path.join(sourceRoot, 'README.md'), path.join(destRoot, 'README.md'), templateContext);
 		this.fs.copy(path.join(sourceRoot, 'webpack.config.js'), path.join(destRoot, 'webpack.config.js'));
+		this.fs.copy(path.join(sourceRoot, 'server.js'), path.join(destRoot, 'server.js'));
 
 		// SASS
 		this.fs.copyTpl(path.join(sourceRoot, 'sass','_vars' + sassFileExtension), path.join(destRoot, 'sass', '_vars' + sassFileExtension), templateContext);

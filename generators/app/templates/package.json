@@ -4,7 +4,8 @@
   "description": "<%= appdescription %>",
   "main": "",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "files": [
     "generators"
@@ -21,9 +22,15 @@
     "babel-core": "^6.21.0",
     "babel-loader": "^6.2.10",
     "babel-preset-es2015": "^6.18.0",
+    "body-parser": "^1.15.2",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.14.0",
     "file-loader": "^0.9.0",
     "html-webpack-plugin": "^2.24.1",
     "path": "^0.12.7",
-    "style-loader": "^0.13.1"
+    "react": "^15.4.1",
+    "react-dom": "^15.4.1",
+    "style-loader": "^0.13.1",
+    "webpack-dev-middleware": "^1.9.0"
   }
 }
