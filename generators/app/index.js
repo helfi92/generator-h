@@ -29,7 +29,7 @@ module.exports = class extends Generator {
 			default : '0.0.0',
 		}, {
 			type    : 'input',
-			name    : 'version',
+			name    : 'author',
 			message : 'Author?',
 			default : this.appname,
 			store   : true
@@ -77,11 +77,16 @@ module.exports = class extends Generator {
 		this.fs.copyTpl(path.join(sourceRoot, 'bower.json'), path.join(destRoot, 'bower.json'), templateContext);
 		this.fs.copyTpl(path.join(sourceRoot, 'package.json'), path.join(destRoot, 'package.json'), templateContext);
 		this.fs.copyTpl(path.join(sourceRoot, 'README.md'), path.join(destRoot, 'README.md'), templateContext);
+		this.fs.copy(path.join(sourceRoot, 'webpack.config.js'), path.join(destRoot, 'webpack.config.js'));
 
 		// SASS
 		this.fs.copyTpl(path.join(sourceRoot, 'sass','_vars' + sassFileExtension), path.join(destRoot, 'sass', '_vars' + sassFileExtension), templateContext);
 		this.fs.copy(path.join(sourceRoot, 'sass', '_name-space' + sassFileExtension), path.join(destRoot, 'sass', '_name-space' + sassFileExtension));
 		this.fs.copy(path.join(sourceRoot, 'sass', 'host' + sassFileExtension), path.join(destRoot, 'sass', 'host' + sassFileExtension));
+
+		// HTML + JS
+		this.fs.copy(path.join(sourceRoot, 'src', 'app.js'), path.join(destRoot, 'src', 'app.js'));
+		this.fs.copy(path.join(sourceRoot, 'src', 'index.html'), path.join(destRoot, 'src', 'index.html'));
 	}
 
 
