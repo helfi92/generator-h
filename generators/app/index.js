@@ -59,7 +59,6 @@ module.exports = class extends Generator {
 		const destRoot = this.destinationRoot();
 		const sourceRoot = this.sourceRoot();
 		const appDir = path.join(destRoot, 'app');
-		const sassFileExtension = this.options.sass ? '.sass' : '.scss';
 		const templateContext = {
 			appname: this.appname,
 			appdescription: this.appdescription,
@@ -69,10 +68,6 @@ module.exports = class extends Generator {
 			appmail: this.appmail
 		};
 
-		mkdirp(path.join(appDir, 'scripts'));
-		mkdirp(path.join(appDir, 'img'));
-		mkdirp(path.join(appDir, 'sass'));
-
 		this.fs.copy(path.join(sourceRoot, '.bowerrc'), path.join(destRoot, '.bowerrc'));
 		this.fs.copy(path.join(sourceRoot, '.babelrc'), path.join(destRoot, '.babelrc'));
 		this.fs.copyTpl(path.join(sourceRoot, 'bower.json'), path.join(destRoot, 'bower.json'), templateContext);
@@ -80,16 +75,12 @@ module.exports = class extends Generator {
 		this.fs.copyTpl(path.join(sourceRoot, 'README.md'), path.join(destRoot, 'README.md'), templateContext);
 		this.fs.copy(path.join(sourceRoot, 'webpack.config.js'), path.join(destRoot, 'webpack.config.js'));
 
-		// SASS
-		this.fs.copyTpl(path.join(sourceRoot, 'sass','_vars' + sassFileExtension), path.join(destRoot, 'sass', '_vars' + sassFileExtension), templateContext);
-		this.fs.copy(path.join(sourceRoot, 'sass', '_name-space' + sassFileExtension), path.join(destRoot, 'sass', '_name-space' + sassFileExtension));
-		this.fs.copy(path.join(sourceRoot, 'sass', 'host' + sassFileExtension), path.join(destRoot, 'sass', 'host' + sassFileExtension));
-
 		// SRC folder
 		this.fs.copy(path.join(sourceRoot, 'src', 'index.html'), path.join(destRoot, 'src', 'index.html'));
 		this.fs.copy(path.join(sourceRoot, 'src', 'app.jsx'), path.join(destRoot, 'src', 'app.jsx'));
 		this.fs.copy(path.join(sourceRoot, 'src', 'partial.jsx'), path.join(destRoot, 'src', 'partial.jsx'));
 		this.fs.copy(path.join(sourceRoot, 'src', 'img', 'bay-bridge.png'), path.join(destRoot, 'src', 'img', 'bay-bridge.png'));
+		this.fs.copy(path.join(sourceRoot, 'src', 'style', 'globalStyle.css'), path.join(destRoot, 'src', 'style', 'globalStyle.css'));
 	}
 
 

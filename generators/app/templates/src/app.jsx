@@ -2,6 +2,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import Partial from './partial.jsx';
 import baybridge from './img/bay-bridge.png';
+import './style/globalStyle.css';
 
 export default class App extends React.Component {
   render () {
