@@ -1,3 +1,5 @@
+import React from 'react';
+import { render } from 'react-dom';
 import Partial from './partial.jsx';
 
 export default class App extends React.Component {

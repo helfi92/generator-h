@@ -74,6 +74,7 @@ module.exports = class extends Generator {
 		mkdirp(path.join(appDir, 'sass'));
 
 		this.fs.copy(path.join(sourceRoot, '.bowerrc'), path.join(destRoot, '.bowerrc'));
+		this.fs.copy(path.join(sourceRoot, '.babelrc'), path.join(destRoot, '.babelrc'));
 		this.fs.copyTpl(path.join(sourceRoot, 'bower.json'), path.join(destRoot, 'bower.json'), templateContext);
 		this.fs.copyTpl(path.join(sourceRoot, 'package.json'), path.join(destRoot, 'package.json'), templateContext);
 		this.fs.copyTpl(path.join(sourceRoot, 'README.md'), path.join(destRoot, 'README.md'), templateContext);
@@ -86,8 +87,9 @@ module.exports = class extends Generator {
 		this.fs.copy(path.join(sourceRoot, 'sass', 'host' + sassFileExtension), path.join(destRoot, 'sass', 'host' + sassFileExtension));
 
 		// HTML + JS
-		this.fs.copy(path.join(sourceRoot, 'src', 'app.js'), path.join(destRoot, 'src', 'app.js'));
 		this.fs.copy(path.join(sourceRoot, 'src', 'index.html'), path.join(destRoot, 'src', 'index.html'));
+		this.fs.copy(path.join(sourceRoot, 'src', 'app.jsx'), path.join(destRoot, 'src', 'app.jsx'));
+		this.fs.copy(path.join(sourceRoot, 'src', 'partial.jsx'), path.join(destRoot, 'src', 'partial.jsx'));
 	}
 
 
