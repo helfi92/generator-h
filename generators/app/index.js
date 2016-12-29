@@ -79,17 +79,17 @@ module.exports = class extends Generator {
 		this.fs.copyTpl(path.join(sourceRoot, 'package.json'), path.join(destRoot, 'package.json'), templateContext);
 		this.fs.copyTpl(path.join(sourceRoot, 'README.md'), path.join(destRoot, 'README.md'), templateContext);
 		this.fs.copy(path.join(sourceRoot, 'webpack.config.js'), path.join(destRoot, 'webpack.config.js'));
-		this.fs.copy(path.join(sourceRoot, 'server', 'server.js'), path.join(destRoot, 'server', 'server.js'));
 
 		// SASS
 		this.fs.copyTpl(path.join(sourceRoot, 'sass','_vars' + sassFileExtension), path.join(destRoot, 'sass', '_vars' + sassFileExtension), templateContext);
 		this.fs.copy(path.join(sourceRoot, 'sass', '_name-space' + sassFileExtension), path.join(destRoot, 'sass', '_name-space' + sassFileExtension));
 		this.fs.copy(path.join(sourceRoot, 'sass', 'host' + sassFileExtension), path.join(destRoot, 'sass', 'host' + sassFileExtension));
 
-		// HTML + JS
+		// SRC folder
 		this.fs.copy(path.join(sourceRoot, 'src', 'index.html'), path.join(destRoot, 'src', 'index.html'));
 		this.fs.copy(path.join(sourceRoot, 'src', 'app.jsx'), path.join(destRoot, 'src', 'app.jsx'));
 		this.fs.copy(path.join(sourceRoot, 'src', 'partial.jsx'), path.join(destRoot, 'src', 'partial.jsx'));
+		this.fs.copy(path.join(sourceRoot, 'src', 'img', 'bay-bridge.png'), path.join(destRoot, 'src', 'img', 'bay-bridge.png'));
 	}
 
 

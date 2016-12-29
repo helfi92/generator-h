@@ -1,9 +1,15 @@
 'use strict';
 
-var path = require('path');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+const DEVELOPMENT = process.env.NODE_ENV === 'development';
+const PRODUCTION = process.env.NODE_ENV === 'production';
+
+console.log('ENV IS: ', process.env.NODE_ENV);
 
 module.exports = {
+  devtool: 'source-map',
   context: path.join(__dirname, 'src'),
   entry: path.join(__dirname, 'src', 'app.jsx'),
   output: {
@@ -12,7 +18,8 @@ module.exports = {
   },
   module: {
     rules: [
-      { test: /\.(js|jsx)$/, use: 'babel-loader' }
+      { test: /\.(js|jsx)$/, use: 'babel-loader' },
+      { test: /\.(png|jpg|gif)/, use: 'file-loader' }
     ]
   },
   plugins: [

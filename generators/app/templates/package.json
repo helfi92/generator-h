@@ -5,7 +5,8 @@
   "main": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack && nodemon ./server/server.js"
+    "build": "rimraf dist && NODE_ENV=production webpack",
+    "dev": "NODE_ENV=development webpack-dev-server"
   },
   "files": [
     "generators"
@@ -16,8 +17,9 @@
   "author": "<%= appname %>",
   "license": "<%= applicense %>",
   "devDependencies": {
-    "nodemon": "^1.11.0",
-    "webpack": "^2.2.0-rc.2"
+    "rimraf": "^2.5.4",
+    "webpack": "^2.2.0-rc.2",
+    "webpack-dev-server": "^2.2.0-rc.0"
   },
   "dependencies": {
     "babel-core": "^6.21.0",
@@ -32,7 +34,6 @@
     "path": "^0.12.7",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
-    "style-loader": "^0.13.1",
-    "webpack-dev-middleware": "^1.9.0"
+    "style-loader": "^0.13.1"
   }
 }
