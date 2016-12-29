@@ -2,6 +2,7 @@
 
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const DEVELOPMENT = process.env.NODE_ENV === 'development';
 const PRODUCTION = process.env.NODE_ENV === 'production';
@@ -20,13 +21,14 @@ module.exports = {
     rules: [
       { test: /\.(js|jsx)$/, use: 'babel-loader' },
       { test: /\.(png|jpg|gif)/, use: 'file-loader' },
-      { test: /\.(css)$/, use: ['style-loader', 'css-loader']}
+      { test: /\.(css)$/, use: ExtractTextPlugin.extract('css-loader')}
     ]
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: path.join(__dirname, 'src', 'index.html'),
       inject: 'body'
-    })
+    }),
+    new ExtractTextPlugin('[name].css')
   ],
 };
