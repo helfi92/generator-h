@@ -46,11 +46,10 @@ module.exports = class extends Generator {
 			store   : true
 		}]).then((answers) => {
 			this.appname = answers.name;
+			this.appauthor = answers.author;
 			this.appversion = answers.version;
 			this.appdescription = answers.description;
 			this.applicense = answers.license;
-			this.log('app name', answers.name);
-			this.log('cool feature', answers.cool);
 			done();
 		});
 	}

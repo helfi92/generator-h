@@ -9,7 +9,7 @@ export default class App extends React.Component {
     return (
       <div>
         <p> Hello generator-h React!</p>
-        <img src={baybridge} />
+        <div><img className="bay-bridge" src={baybridge} /></div>
         <Partial/>
       </div>
     );
