@@ -8,9 +8,6 @@ const webpack = require('webpack');
 const DEVELOPMENT = process.env.NODE_ENV === 'development';
 const PRODUCTION = process.env.NODE_ENV === 'production';
 
-console.log('ENV IS: ', process.env.NODE_ENV);
-
-
 const plugins = [
   new HtmlWebpackPlugin({ template: path.join(__dirname, 'src', 'index.html'), inject: 'body' }),
   new ExtractTextPlugin('[name].css'),

@@ -67,9 +67,7 @@ module.exports = class extends Generator {
 			appmail: this.appmail
 		};
 
-		this.fs.copy(path.join(sourceRoot, '.bowerrc'), path.join(destRoot, '.bowerrc'));
 		this.fs.copy(path.join(sourceRoot, '.babelrc'), path.join(destRoot, '.babelrc'));
-		this.fs.copyTpl(path.join(sourceRoot, 'bower.json'), path.join(destRoot, 'bower.json'), templateContext);
 		this.fs.copyTpl(path.join(sourceRoot, 'package.json'), path.join(destRoot, 'package.json'), templateContext);
 		this.fs.copyTpl(path.join(sourceRoot, 'README.md'), path.join(destRoot, 'README.md'), templateContext);
 		this.fs.copy(path.join(sourceRoot, 'webpack.config.js'), path.join(destRoot, 'webpack.config.js'));
@@ -89,18 +87,14 @@ module.exports = class extends Generator {
 	}
 
 	configuring() {
-		this.log('configuring');
 		this.config.save();
 	}
 
 	writing() {
-		this.log('writing');
 		this._createProjectFileSystem();
 	}
 
 	install() {
-		this.log('install');
-		this.bowerInstall();
 		this.npmInstall();
 	}
 };
